@@ -23,7 +23,7 @@ $output=null;
 $retval=null;
 exec('pdftk test/test_form_false.pdf', $output, $retval);
 echo "Returned with status $retval and output:\n";
-print_r($output);
+var_dump($output);
 
 ?>
 <br>
