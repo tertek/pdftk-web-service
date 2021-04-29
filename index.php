@@ -18,7 +18,7 @@ header("Content-Type: text/html");
 
 <h1>Convert PDF</h1>
 <p>Make PDF readable through FPDM</p>
-<form action="convert.php">
+<form action="convert.php" method="post" enctype="multipart/form-data">
 <input type="file" name="fileToUpload" id="fileToUpload">
 <input type="submit" value="Upload Image" name="submit">
 </form>
