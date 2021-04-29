@@ -19,9 +19,18 @@ header("Content-Type: text/html");
 
 <?php 
 
+
 $output=null;
 $retval=null;
-exec('pdftk test/test_form_false.pdf', $output, $retval);
+exec('pdftk', $output, $retval);
+echo "Returned with status $retval and output:\n";
+var_dump($output);
+
+echo "br";
+
+$output=null;
+$retval=null;
+exec('pdftk test/test_form_false.pdf dump_data_fields', $output, $retval);
 echo "Returned with status $retval and output:\n";
 var_dump($output);
 
