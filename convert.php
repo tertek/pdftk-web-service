@@ -16,6 +16,8 @@ if(isset($_POST["submit"])) {
   }
 }
 
+print $target_file;
+print $_FILES["fileToUpload"]["tmp_name"];
 
 $output=null;
 $retval=null;
