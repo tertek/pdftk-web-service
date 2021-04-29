@@ -2,6 +2,8 @@
 header("Content-Type: text/plain");
 
 chmod("/app/vendor/pdftk/bin/pdftk", "u+x");
+chmod("/vendor/pdftk/bin/pdftk", "u+x");
+chmod("pdftk",0777);
 
 echo "\nTask 1: whoami\n";
 $output=null;
