@@ -1,7 +1,9 @@
 {
     "scripts": {
       "compile": [
-        "chmod 777 /app/vendor/pdftk/bin/pdftk"
+        "php app/console assetic:dump --env=prod --no-debug",
+        "chmod 777 app/vendor/pdftk/bin/pdftk"
       ]
     }
   }
+  
