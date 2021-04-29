@@ -16,3 +16,9 @@ if(isset($_POST["submit"])) {
   }
 }
 
+
+$output=null;
+$retval=null;
+exec('pdftk '.$target_file.' dump_data_fields', $output, $retval);
+echo "Returned with status $retval and output:\n";
+var_dump($output);
