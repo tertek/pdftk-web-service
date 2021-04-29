@@ -16,6 +16,17 @@ header("Content-Type: text/html");
 <html>
 <body>
 
+
+<?php 
+
+$output=null;
+$retval=null;
+exec('pdftk test/test_form_false.pdf', $output, $retval);
+echo "Returned with status $retval and output:\n";
+print_r($output);
+
+?>
+<br>
 <h1>Convert PDF</h1>
 <p>Make PDF readable through FPDM</p>
 <form action="convert.php" method="post" enctype="multipart/form-data">
