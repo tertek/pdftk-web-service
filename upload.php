@@ -19,29 +19,28 @@ try {
 
     //  Temporary Name
     $name = $_FILES['file']['name'];  
-    $temp_name  = $_FILES['file']['tmp_name'];  
+    $tmp_name  = $_FILES['file']['tmp_name'];  
 
     //  Temporary file locations
-    $tmp_upload = 'tmp_upload/';
-    $tmp_convert = 'tmp_convert/';   
+    $tmp = 'tmp/';
 
     //  Temporary file names
-    $uploadName = uniqid('upload_') . ".pdf";
-    $convertName = uniqid('convert_') . ".pdf";
+    $upload_name = uniqid('upload_') . ".pdf";
+    $convert_name = uniqid('convert_') . ".pdf";
 
     //  Temporary paths
-    $uploadPath = $tmp_upload.$uploadName;
-    $convertPath = $tmp_convert.$convertName;
+    $upload_path = $tmp.$upload_name;
+    $convert_path = $tmp.$convert_name;
 
     //  Move file
-    move_uploaded_file($temp_name, $uploadPath);
+    move_uploaded_file($tmp_name, $upload_path);
 
 
     //  Execute pdftk binary 
     $output=null;
     $retval=null;
 
-    exec('pdftk '.$uploadPath.' output '.$convertPath. '', $output, $retval);
+    exec('pdftk '.$upload_path.' output '.$convert_path. '', $output, $retval);
 
     //  Check if execution was successful
     if($retval !== 0) {
@@ -51,7 +50,7 @@ try {
     }
 
     //  Generate base64 string from PDF
-    $pdf = file_get_contents($convertPath);
+    $pdf = file_get_contents($convert_path);
     $base64 = base64_encode($pdf);
     
     //  Send JSON Response
@@ -64,8 +63,8 @@ try {
     echo json_encode($response);
 
     //  Cleanup
-    unlink($uploadPath);
-    unlink($convertPath);
+    unlink($upload_path);
+    unlink($convert_path);
 
 } catch (\Exception $e) {
     //  Send Error Response
