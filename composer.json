@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "compile": [
+      "chmod u+x vendor/pdftk/bin/pdftk"
+    ]
+  }
+}
