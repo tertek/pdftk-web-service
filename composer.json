@@ -3,6 +3,8 @@
       "compile": [
         "chmod u+x vendor/pdftk/bin/pdftk"
       ]
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.2"
     }
-  }
-  
+}

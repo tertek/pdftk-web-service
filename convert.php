@@ -1,26 +1,45 @@
 <?php
 
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-  if($check !== false) {
-    echo "File is an image - " . $check["mime"] . ".";
-    $uploadOk = 1;
+require __DIR__.'/vendor/autoload.php';
+
+
+  $uploadName = uniqid('upload_') . ".pdf";
+  dump($_FILES['fileToUpload']['name']);
+
+  //$name       = "converted_" . $_FILES['fileToUpload']['name'];  
+  $temp_name  = $_FILES['fileToUpload']['tmp_name'];  
+  if(isset($_FILES['fileToUpload']['name']) and !empty($_FILES['fileToUpload']['name'])){
+      $tmp_upload = 'tmp_upload/';      
+      if(move_uploaded_file($temp_name, $tmp_upload.$uploadName)){
+          echo 'File uploaded successfully';
+      }
   } else {
-    echo "File is not an image.";
-    $uploadOk = 0;
+      echo 'You should select a file to upload !!';
   }
-}
 
-print $target_file;
-print $_FILES["fileToUpload"]["tmp_name"];
+  $tmp_convert = 'tmp_convert/';   
 
-$output=null;
-$retval=null;
-exec('pdftk '.$target_file.' dump_data_fields', $output, $retval);
-echo "Returned with status $retval and output:\n";
-var_dump($output);
+  $output=null;
+  $retval=null;
+  exec('pdftk '.$tmp_upload.$uploadName.' dump_data_fields', $output, $retval);
+  echo "Returned with status $retval and output:\n";
+
+  dump($output);
+  dump($_FILES["fileToUpload"]);
+
+  $convertName = uniqid('convert_') . ".pdf";
+  $output=null;
+  $retval=null;
+  exec('pdftk '.$tmp_upload.$uploadName.' output '.$tmp_convert.$convertName. '', $output, $retval);
+  echo "Returned with status $retval and output:\n";
+
+  dump($output);
+  dump($_FILES["fileToUpload"]);
+
+  $pdf = file_get_contents($tmp_convert.$convertName);
+  $base64 = base64_encode($pdf);
+
+  print '<a download href="data:application/pdf;'.$base64.'" title="Download converted PDF">Test</a>';
+
+  unlink($tmp_upload.$uploadName);
+  unlink($tmp_convert.$convertName);
