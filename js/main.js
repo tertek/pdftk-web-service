@@ -53,7 +53,7 @@ $( document ).ready(function() {
 	
 	$("#download-button").on('click', function(e){
 		var contentBase64 = $(this).attr("base64-data");
-		var fileName = $(this).attr("file-name");
+		var fileName = "pdftk_" + $(this).attr("file-name");
 
 		const linkSource = `data:application/pdf;base64,${contentBase64}`;
 		const downloadLink = document.createElement('a');
