@@ -13,10 +13,10 @@ $( document ).ready(function() {
 		if (file.size > allowedFileSize ) {
 			errors.push("invalid-size")
 		}
-
-/* 		if(file.type != allowedFileType) {
+ 
+ 		if(file.type != allowedFileType) {
 			errors.push("invalid-type")
-		} */
+		}
 
 		if(errors.length > 0) {
 			//	Clear File Uploader
