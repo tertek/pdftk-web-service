@@ -45,7 +45,7 @@ try {
     //  Check if execution was successful
     if($retval !== 0) {
         //  Cleanup
-        unlink($uploadPath);
+        unlink($upload_path);
         throw new \Exception("pdftk error");
     }
 
