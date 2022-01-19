@@ -9,7 +9,7 @@ try {
         throw new \Exception("No file specified!");
     }
     
-    if($_FILES['file']['type'] != "application/pdf") {
+    if(strtolower($_FILES['file']['type']) != "application/pdf") {
         throw new \Exception("Invalid file type");
     }
 
