@@ -10,7 +10,7 @@ try {
     }
     
     if(strtolower($_FILES['file']['type']) != "application/pdf") {
-        throw new \Exception("Foo type: ". $_FILES['file']['type']);
+        throw new \Exception("Foo type: ". json_encode($_FILES['file']));
     }
 
     if($_FILES['file']['size'] > 2*1e+7) {
