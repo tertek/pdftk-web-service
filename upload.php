@@ -10,7 +10,7 @@ try {
     }
     
     if(strtolower($_FILES['file']['type']) != "application/pdf") {
-        throw new \Exception("Invalid file type: ". $_FILES['file']['type']);
+        throw new \Exception("Foo type: ". $_FILES['file']['type']);
     }
 
     if($_FILES['file']['size'] > 2*1e+7) {
