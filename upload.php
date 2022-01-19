@@ -10,7 +10,7 @@ try {
     }
     
     if(strtolower($_FILES['file']['type']) != "application/pdf") {
-        throw new \Exception("Foo type: ". json_encode($_FILES['file']));
+        throw new \Exception("Invalid File Type. ". json_encode($_FILES['file']));
     }
 
     if($_FILES['file']['size'] > 2*1e+7) {
@@ -56,7 +56,8 @@ try {
     //  Send JSON Response
     $response = array(
         "base64" => $base64, 
-        "name" => $name
+        "name" => $name,
+        "file"=>json_encode($_FILES['file'])
     );
 
     header('Content-Type: application/json');
