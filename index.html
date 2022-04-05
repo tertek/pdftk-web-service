@@ -25,8 +25,15 @@
     </section>    
     <section class="section">
       <div class="container">
+        
         <div class="columns is-centered is-vcentered">
           <div class="column is-half-desktop">
+          <article class="message is-danger">
+            <div class="message-body">
+              There have been several issues with pdftk-web-service reported. Some PDFs seem to have a format that `pdftk` in <b>Heroku environment</b> cannot resolve.<br>
+              Please use in that case <a href="https://www.pdflabs.com/tools/pdftk-server/" target="_blank">pdftk-server</a> on your <b>Local Machine</b>.<br>
+            </div>
+          </article>
           <form action="" method="post" enctype="multipart/form-data" class="box mt-6">
           <div class="field">
             <label class="label">Upload & Convert</label>
