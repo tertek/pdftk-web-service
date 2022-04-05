@@ -1,0 +1,4 @@
+# Rewrite Rules for REST API
+RewriteEngine On
+RewriteRule ^(.*)/(.*)/?$ index.php [nc,qsa]
+RewriteRule ^(.*)/?$ index.php [nc,qsa]
